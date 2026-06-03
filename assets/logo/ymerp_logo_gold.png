@@ -1,0 +1,8 @@
+assets/
+│   ├── logo/
+│   │   ├── ymerp_logo_gold.png
+│   │   ├── ymerp_logo_light.png
+│   │   └── ymerp_logo_icon.png
+│   └── icons/
+│       └── (أيقونات المستخدم، الفرع، الوحدة، كلمة المرور...)
+│
