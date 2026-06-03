@@ -1,0 +1,73 @@
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:background="@drawable/background_ymerp">
+
+    <!-- شعار النظام -->
+    <ImageView
+        android:src="@drawable/ymerp_logo_gold"
+        android:layout_width="120dp"
+        android:layout_height="120dp"
+        android:layout_marginBottom="24dp"/>
+
+    <!-- السنة المالية -->
+    <EditText
+        android:id="@+id/etFiscalYear"
+        android:hint="السنة المالية / Fiscal Year"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arial"/>
+
+    <!-- رقم المشترك -->
+    <EditText
+        android:id="@+id/etSubscriberNumber"
+        android:hint="رقم المشترك / Subscriber No."
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arial"/>
+
+    <!-- رقم الوحدة المحاسبية -->
+    <EditText
+        android:id="@+id/etUnitNumber"
+        android:hint="رقم الوحدة / Unit No."
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arial"/>
+
+    <!-- رقم الفرع -->
+    <EditText
+        android:id="@+id/etBranchNumber"
+        android:hint="رقم الفرع / Branch No."
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arial"/>
+
+    <!-- اسم المستخدم -->
+    <EditText
+        android:id="@+id/etUsername"
+        android:hint="اسم المستخدم / Username"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arial"/>
+
+    <!-- كلمة المرور -->
+    <EditText
+        android:id="@+id/etPassword"
+        android:hint="كلمة المرور / Password"
+        android:inputType="textPassword"
+        android:layout_width="280dp"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/arial"/>
+
+    <!-- زر تسجيل الدخول -->
+    <Button
+        android:id="@+id/btnLogin"
+        android:text="تسجيل الدخول / Login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/arial"/>
+</LinearLayout>
