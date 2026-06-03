@@ -1,0 +1,63 @@
+<GridLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:columnCount="2"
+    android:rowCount="2"
+    android:padding="16dp">
+
+    <!-- بطاقة الفواتير -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_margin="8dp"
+        android:background="@drawable/card_background">
+
+        <ImageView
+            android:src="@drawable/icon_invoice"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvInvoices"
+            android:text="85,300 ر.ي"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:text="الفواتير المستحقة"
+            android:textSize="14sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+
+    <!-- بطاقة العملاء -->
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_columnWeight="1"
+        android:layout_margin="8dp"
+        android:background="@drawable/card_background">
+
+        <ImageView
+            android:src="@drawable/icon_clients"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvClients"
+            android:text="1,250 عميل"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:text="إجمالي العملاء"
+            android:textSize="14sp"
+            android:layout_gravity="center"/>
+    </LinearLayout>
+</GridLayout>
