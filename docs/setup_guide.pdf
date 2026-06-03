@@ -1,0 +1,5 @@
+─ docs/
+│   ├── README.md   ← توثيق ثنائي اللغة (عربي/English)
+│   └── setup_guide.pdf   ← دليل إعداد قابل للطباعة
+│
+└── LICENSE
