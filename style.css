@@ -1,0 +1,104 @@
+/* إعدادات عامة */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: #f4f6f9;
+    color: #333;
+}
+
+/* الشريط العلوي */
+header {
+    background-color: #003366;
+    color: white;
+    padding: 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 22px;
+}
+
+header nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+header nav a:hover {
+    text-decoration: underline;
+}
+
+/* بطاقة المستخدم */
+.user-card {
+    display: flex;
+    align-items: center;
+    background: white;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.user-photo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    margin-right: 15px;
+}
+
+.user-info h2 {
+    margin: 0;
+    font-size: 18px;
+    color: #003366;
+}
+
+/* بطاقات الملخص */
+.summary-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin: 20px;
+}
+
+.card {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    font-size: 16px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+.card strong {
+    display: block;
+    margin-top: 10px;
+    font-size: 20px;
+}
+
+/* ألوان البطاقات */
+.card.yellow { border-top: 5px solid #f1c40f; }
+.card.green  { border-top: 5px solid #27ae60; }
+.card.blue   { border-top: 5px solid #2980b9; }
+.card.red    { border-top: 5px solid #c0392b; }
+
+/* المخطط */
+.chart {
+    background: white;
+    margin: 20px;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+/* التذييل */
+footer {
+    background-color: #003366;
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+}
