@@ -1,31 +1,44 @@
-<!DOCTYPE html>
-<html lang="ar">
-<head>
-  <meta charset="UTF-8">
-  <title>قائمة الفواتير</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <div class="table-container">
-    <h2>📊 قائمة الفواتير</h2>
-    <input type="text" id="searchInput" placeholder="🔍 ابحث عن فاتورة أو عميل...">
+document.getElementById("invoiceForm").addEventListener("submit", function(e) {
+  e.preventDefault();
 
-    <table id="invoiceTable">
-      <thead>
-        <tr>
-          <th>رقم الفاتورة</th>
-          <th>اسم العميل</th>
-          <th>المبلغ</th>
-          <th>التاريخ</th>
-          <th>إجراءات</th>
-        </tr>
-      </thead>
-      <tbody>
-        <!-- سيتم ملء البيانات ديناميكيًا عبر table.js -->
-      </tbody>
-    </table>
-  </div>
+  // جمع البيانات من الحقول
+  const data = {
+    customerName: document.getElementById("customerName").value,
+    invoiceNumber: document.getElementById("invoiceNumber").value,
+    amount: parseFloat(document.getElementById("amount").value),
+    date: document.getElementById("date").value
+  };
 
-  <script src="scripts/table.js"></script>
-</body>
-</html>
+  // تحضير الرؤوس
+  const headers = { "Content-Type": "application/json" };
+  const token = localStorage.getItem("token"); // استرجاع التوكن
+  if (token) headers["Authorization"] = "Bearer " + token;
+
+  const submitBtn = this.querySelector('button[type="submit"]');
+  submitBtn.disabled = true;
+
+  fetch("/api/invoices", {
+    method: "POST",
+    headers,
+    body: JSON.stringify(data)
+  })
+  .then(async res => {
+    submitBtn.disabled = false;
+    const text = await res.text();
+    let json;
+    try { json = JSON.parse(text); } catch(_) { json = null; }
+    if (!res.ok) {
+      const errMsg = (json && json.message) ? json.message : `خطأ: ${res.status} ${res.statusText}`;
+      throw new Error(errMsg);
+    }
+    return json;
+  })
+  .then(response => {
+    document.getElementById("message").innerText = "✅ تم حفظ الفاتورة بنجاح";
+    document.getElementById("invoiceForm").reset();
+  })
+  .catch(err => {
+    document.getElementById("message").innerText = "❌ حدث خطأ: " + err.message;
+    console.error(err);
+  });
+});
