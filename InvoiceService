@@ -1,0 +1,12 @@
+@Autowired
+private FirebaseService firebaseService;
+
+public Invoice save(Invoice invoice) {
+    Invoice saved = invoiceRepository.save(invoice);
+    try {
+        firebaseService.syncInvoice(saved);
+    } catch (Exception e) {
+        System.out.println("فشل المزامنة مع Firebase: " + e.getMessage());
+    }
+    return saved;
+}
