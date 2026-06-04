@@ -1,0 +1,30 @@
+function renderTable(data) {
+  tableBody.innerHTML = "";
+  data.forEach(item => {
+    const row = `<tr>
+      <td>${item.invoiceNumber}</td>
+      <td>${item.customerName}</td>
+      <td>${item.amount}</td>
+      <td>${item.date}</td>
+      <td>
+        <button class="action-btn edit-btn" onclick="editInvoice('${item.invoiceNumber}')">✏️ تعديل</button>
+        <button class="action-btn delete-btn" onclick="deleteInvoice('${item.invoiceNumber}')">🗑️ حذف</button>
+        <button class="action-btn details-btn" onclick="viewDetails('${item.invoiceNumber}')">📄 تفاصيل</button>
+      </td>
+    </tr>`;
+    tableBody.innerHTML += row;
+  });
+}
+
+// أمثلة للوظائف
+function editInvoice(id) {
+  alert("تعديل الفاتورة: " + id);
+}
+
+function deleteInvoice(id) {
+  alert("حذف الفاتورة: " + id);
+}
+
+function viewDetails(id) {
+  alert("عرض تفاصيل الفاتورة: " + id);
+}
