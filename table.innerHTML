@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>إدارة المستخدمين - YMERP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>إدارة المستخدمين</h1>
+  <nav>
+    <a href="/dashboard.html">لوحة التحكم</a>
+    <a href="/invoices.html">الفواتير</a>
+    <a href="/reports.html">التقارير</a>
+  </nav>
+
+  <section>
+    <h2>إضافة مستخدم جديد</h2>
+    <form id="userForm">
+      <input type="text" id="username" placeholder="اسم المستخدم" required>
+      <input type="password" id="password" placeholder="كلمة المرور" required>
+      <select id="role">
+        <option value="ADMIN">مدير</option>
+        <option value="ACCOUNTANT">محاسب</option>
+        <option value="USER">مستخدم عادي</option>
+      </select>
+      <button type="submit">إضافة</button>
+    </form>
+  </section>
+
+  <section>
+    <h2>قائمة المستخدمين</h2>
+    <table border="1">
+      <thead>
+        <tr>
+          <th>المعرف</th>
+          <th>اسم المستخدم</th>
+          <th>الدور</th>
+          <th>الحالة</th>
+          <th>إجراءات</th>
+        </tr>
+      </thead>
+      <tbody id="userTable"></tbody>
+    </table>
+  </section>
+
+  <script>
+    async function loadUsers() {
+      const response = await fetch("/api/users", {
+        headers: { "Authorization": "Bearer " + localStorage.getItem("jwt") }
+      });
+      if (response.ok) {
+        const users = await response.json();
+        const table = document.getElementById("userTable");
+        table.innerHTML = "";
+        users.forEach(user => {
+          const row = `<tr>
+            <td>${user.id}</td>
+            <td>${user.username}</td>
+            <td>${user.role}</td>
+            <td>${user.active ? "نشط" : "موقوف"}</td>
+            <td>
+              <button onclick="deleteUser(${user.id})">حذف</button>
+            </td>
+          </tr>`;
+          table.innerHTML += row;
+        });
+      }
+    }
+
+    async function deleteUser(id) {
+      const response = await fetch("/api/users/" + id, {
+        method: "DELETE",
+        headers: { "Authorization": "Bearer " + localStorage.getItem("jwt") }
+      });
+      if (response.ok) {
+        loadUsers();
+      } else {
+        alert("فشل الحذف ❌");
+      }
+    }
+
+    document.getElementById("userForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+      const username = document.getElementById("username").value;
+      const password = document.getElementById("password").value;
+      const role = document.getElementById("role").value;
+
+      const response = await fetch("/api/users", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Authorization": "Bearer " + localStorage.getItem("jwt")
+        },
+        body: JSON.stringify({ username, passwordHash: password, role, active: true })
+      });
+
+      if (response.ok) {
+        loadUsers();
+      } else {
+        alert("فشل الإضافة ❌");
+      }
+    });
+
+    loadUsers();
+  </script>
+</body>
+</html>
