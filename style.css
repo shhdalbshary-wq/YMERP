@@ -1,4 +1,19 @@
-/* إعدادات عامة */
+/.action-btn {
+  padding: 6px 10px;
+  margin: 2px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.edit-btn { background: #f1c40f; color: #fff; }
+.delete-btn { background: #c0392b; color: #fff; }
+.details-btn { background: #27ae60; color: #fff; }
+
+.edit-btn:hover { background: #d4ac0d; }
+.delete-btn:hover { background: #922b21; }
+.details-btn:hover { background: #1e8449; }* إعدادات عامة */
 body {
     font-family: 'Arial', sans-serif;
     margin: 0;
