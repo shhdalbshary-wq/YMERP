@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+  <meta charset="UTF-8">
+  <title>لوحة التحكم - YMERP</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <h1>لوحة التحكم</h1>
+  <nav>
+    <a href="/users.html">المستخدمين</a>
+    <a href="/invoices.html">الفواتير</a>
+    <a href="/reports.html">التقارير</a>
+    <a href="/logout.html">تسجيل الخروج</a>
+  </nav>
+
+  <section id="summary">
+    <h2>ملخص النظام</h2>
+    <p id="sales">إجمالي المبيعات: ...</p>
+    <p id="expenses">إجمالي المصروفات: ...</p>
+    <p id="profit">الربح الصافي: ...</p>
+  </section>
+
+  <script>
+    async function loadSummary() {
+      const response = await fetch("/api/reports/summary", {
+        headers: { "Authorization": "Bearer " + localStorage.getItem("jwt") }
+      });
+      if (response.ok) {
+        const data = await response.json();
+        document.getElementById("sales").innerText = "إجمالي المبيعات: " + data.totalSales;
+        document.getElementById("expenses").innerText = "إجمالي المصروفات: " + data.totalExpenses;
+        document.getElementById("profit").innerText = "الربح الصافي: " + data.netProfit;
+      } else {
+        alert("فشل تحميل البيانات ❌");
+      }
+    }
+    loadSummary();
+  </script>
+</body>
+</html>
