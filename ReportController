@@ -1,0 +1,17 @@
+@GetMapping("/export/pdf")
+public ResponseEntity<byte[]> exportPdf() throws IOException {
+    byte[] pdf = reportExportService.exportSummaryToPdf();
+    return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=report.pdf")
+            .contentType(MediaType.APPLICATION_PDF)
+            .body(pdf);
+}
+
+@GetMapping("/export/excel")
+public ResponseEntity<byte[]> exportExcel() throws IOException {
+    byte[] excel = reportExportService.exportSummaryToExcel();
+    return ResponseEntity.ok()
+            .header(HttpHeaders.CONTENT_DISPOSITION, "attachment; filename=report.xlsx")
+            .contentType(MediaType.APPLICATION_OCTET_STREAM)
+            .body(excel);
+}
